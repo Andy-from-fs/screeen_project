@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-   
   </div>
 </template>
 
@@ -15,8 +14,8 @@ import myvideo from './views/video.vue';
 export default {
   name: 'app',
   components:{
-    "mychart":chart,
-    "mycircle":circle,
+    "my-chart":chart,
+    "my-circle":circle,
     "free-room":free_room,
     "new_partner":new_partner,
     "mysize":size,
