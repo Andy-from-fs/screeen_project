@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <my-chart></my-chart>
   </div>
 </template>
 
@@ -11,6 +12,9 @@ import new_partner from './views/new_partner.vue';
 import size from './views/size.vue';
 import turnover from './views/turnover.vue';
 import myvideo from './views/video.vue';
+import $ from 'jquery'
+
+// require('./assets/js/hcharts/js');
 export default {
   name: 'app',
   components:{

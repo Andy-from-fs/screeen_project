@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "highcharts": "^v5.0.14",
     "vue": "^2.4.2",
     "vuex": "^2.3.1"
   },
@@ -39,6 +40,7 @@
     "file-loader": "^0.11.2",
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.29.0",
+    "jquery": "^3.2.1",
     "node-sass": "^4.5.3",
     "postcss": "^6.0.3",
     "postcss-cssnext": "^2.11.0",
@@ -58,6 +60,3 @@
     "npm": ">= 3.0.0"
   }
 }
-
-
-
