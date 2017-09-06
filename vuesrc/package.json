@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "echarts": "^3.7.1",
     "highcharts": "^v5.0.14",
     "vue": "^2.4.2",
     "vuex": "^2.3.1"

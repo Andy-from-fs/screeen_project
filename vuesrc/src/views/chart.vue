@@ -1,122 +1,145 @@
 <!--
 Description
-@authors Your Name (you@example.org)
+@authors Andy
 @date    2017-09-05 16:25:16
 @version 1.0.0
 -->
 <template>
   <div>
-    <div id="chart"></div>
+    <div id="chart" style="width: 600px;height:400px;" ref="charts"></div>
   </div>
 </template>
 
 <script>
   import $ from 'jquery'
-  let Highcharts = require('highcharts');
 
-  // 在 Highcharts 加载之后加载功能模块
-  require('highcharts/modules/exporting')(Highcharts);
+  import ECharts from 'echarts';
   export default {
-    name: 'chart',
+    name: 'myChart',
     data() {
-      return {}
+      return {
+        dataX: ['', '1月', '2月', '3月', '4月', '6月', '7月', ''],
+        data1: [50, 40, 50, 60, 70, 80, 75, 85],
+        data2: [10, 15, 17, 20, 29, 35, 40, 48]
+      }
     },
     methods: {
       testJQ() {
         $('#chart').css('color', '#282828');
       },
-      initChart() {
-        $.getJSON('https://data.jianshukeji.com/jsonp?filename=json/usdeur.json&callback=?', function (data) {
-          Highcharts.chart('chart',{
-            chart: {
-              zoomType: 'x'
-            },
-            title: {
-              text: null
-            },
-            subtitle: {
-              text: document.ontouchstart === undefined ?
-                '鼠标拖动可以进行缩放' : '手势操作进行缩放'
-            },
-            xAxis: {
-              type: 'datetime',
-              dateTimeLabelFormats: {
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%m-%d',
-                week: '%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
+      initEchart() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = ECharts.init(this.$refs.charts);
+        // 绘制图表
+        let option = {
+          xAxis: {
+            type: 'category',
+            data: this.dataX,
+            boundaryGap: false,
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#1e88e6',
+                width: 1
               }
             },
-            tooltip: {
-              dateTimeLabelFormats: {
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%Y-%m-%d',
-                week: '%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
+            // 刻度消失
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#fff'
               }
             },
-            yAxis: {
-              title: {
-                text: '汇率'
+          },
+          yAxis: {
+            type: 'value',
+            offset: 20,
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#1e88e6',
+                width: 1
               }
             },
-            legend: {
-              enabled: false
+          },
+          grid: {
+            top: 110,
+            left: 15,
+            right: 15,
+          },
+          series: [{
+              name: '模拟数据',
+              type: 'line',
+              smooth: true,
+              stack: 'a',
+              symbol: 'circle',
+              symbolSize: 5,
+              sampling: 'average',
+              itemStyle: {
+                normal: {
+                  color: '#ffff00'
+                }
+              },
+              areaStyle: {
+                normal: {
+                  color: new ECharts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#fff000'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(0, 115, 224,0)'
+                  }])
+                }
+              },
+              data: this.data1
             },
-            plotOptions: {
-              area: {
-                fillColor: {
-                  linearGradient: {
-                    x1: 0,
-                    y1: 0,
-                    x2: 0,
-                    y2: 1
-                  },
-                  stops: [
-                    [0, Highcharts.getOptions().colors[0]],
-                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                  ]
-                },
-                marker: {
-                  radius: 2
-                },
-                lineWidth: 1,
-                states: {
-                  hover: {
-                    lineWidth: 1
-                  }
-                },
-                threshold: null
-              }
-            },
-            series: [{
-              type: 'area',
-              name: '美元兑欧元',
-              data: data
-            }]
-          });
-        });
+            {
+              name: '模拟数据',
+              type: 'line',
+              smooth: true,
+              stack: 'b',
+              symbol: 'circle',
+              symbolSize: 5,
+              sampling: 'average',
+              itemStyle: {
+                normal: {
+                  color: '#ffffff'
+                }
+              },
+              areaStyle: {
+                normal: {
+                  color: new ECharts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#ffffff'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(0, 115, 224,0)'
+                  }])
+                }
+              },
+              data: this.data2
+            }
+
+          ]
+        };
+
+        myChart.setOption(option);
+        return myChart;
       }
     },
     mounted() {
-      this.initChart();
+      console.log(this.initEchart());
     }
   }
 </script>
 
 <style lang="scss">
-  #chart{
-    background-color: transparent;
-  }
-  .highcharts-background{
-    fill:transparent!important;
-  }
+  // #chart {
+  //   background-color: transparent;
+  // }
+  // .highcharts-background {
+  //   fill: transparent!important;
+  // }
 </style>
