@@ -18,6 +18,7 @@ Description
     name: 'myChart',
     data() {
       return {
+        legend:['入驻企业','创造就业岗位'],
         dataX: ['', '1月', '2月', '3月', '4月', '6月', '7月', ''],
         data1: [50, 40, 50, 60, 70, 80, 75, 85],
         data2: [10, 15, 17, 20, 29, 35, 40, 48]
@@ -32,6 +33,17 @@ Description
         let myChart = ECharts.init(this.$refs.charts);
         // 绘制图表
         let option = {
+          legend:{
+            type:'plain',
+            top:0,
+            left:0,
+            width:'100%',
+            data:this.legend,
+            textStyle:{
+              color:'#fff',
+              
+            }
+          },
           xAxis: {
             type: 'category',
             data: this.dataX,
@@ -70,7 +82,7 @@ Description
             right: 15,
           },
           series: [{
-              name: '模拟数据',
+              name: this.legend[0],
               type: 'line',
               smooth: true,
               stack: 'a',
@@ -96,7 +108,7 @@ Description
               data: this.data1
             },
             {
-              name: '模拟数据',
+              name: this.legend[1],
               type: 'line',
               smooth: true,
               stack: 'b',
