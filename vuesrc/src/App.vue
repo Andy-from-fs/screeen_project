@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <echart></echart>
+    <!-- <echart></echart> -->
+    <my-circle></my-circle>
   </div>
 </template>
 
@@ -34,7 +35,10 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
+  //  @import './assets/font/AGENCYR_num/AGENCYR.css';
+
+
   body {
     padding: 0 50px;
     background: url(./assets/background.png);

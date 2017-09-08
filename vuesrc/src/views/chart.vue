@@ -6,6 +6,7 @@ Description
 -->
 <template>
   <div>
+    <div class="legend">123</div>
     <div id="chart" style="width: 600px;height:400px;" ref="charts"></div>
   </div>
 </template>
@@ -18,7 +19,7 @@ Description
     name: 'myChart',
     data() {
       return {
-        legend:['入驻企业','创造就业岗位'],
+        legend: ['入驻企业', '创造就业岗位'],
         dataX: ['', '1月', '2月', '3月', '4月', '6月', '7月', ''],
         data1: [50, 40, 50, 60, 70, 80, 75, 85],
         data2: [10, 15, 17, 20, 29, 35, 40, 48]
@@ -33,17 +34,6 @@ Description
         let myChart = ECharts.init(this.$refs.charts);
         // 绘制图表
         let option = {
-          legend:{
-            type:'plain',
-            top:0,
-            left:0,
-            width:'100%',
-            data:this.legend,
-            textStyle:{
-              color:'#fff',
-              
-            }
-          },
           xAxis: {
             type: 'category',
             data: this.dataX,
@@ -91,7 +81,7 @@ Description
               sampling: 'average',
               itemStyle: {
                 normal: {
-                  color: '#ffff00'
+                  color: '#ffff00',
                 }
               },
               areaStyle: {
@@ -147,11 +137,23 @@ Description
   }
 </script>
 
-<style lang="scss">
-  // #chart {
-  //   background-color: transparent;
-  // }
-  // .highcharts-background {
-  //   fill: transparent!important;
-  // }
+<style lang="css">
+  @font-face {
+    font-family: agencyr ;
+    src: url("../assets/font/agencyr/agencyr.eot");
+    /* IE9 */
+    src: url("../assets/font/agencyr/agencyr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../assets/font/agencyr/agencyr.woff") format("woff"), /* chrome、firefox */
+    url("../assets/font/agencyr/agencyr.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url("../assets/font/agencyr/agencyr.svg#AGENCYR") format("svg");
+    /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  .legend {
+    color: #fff;
+    font-family:  agencyr;
+    
+  }
 </style>

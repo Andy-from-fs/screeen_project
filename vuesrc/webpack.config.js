@@ -18,7 +18,7 @@ module.exports = {
     main: path.resolve(__dirname, './src/main.js'),
     vendors: path.resolve(__dirname, './src/vendors.js'),
   },
-  
+
   output: {
     path: path.resolve(__dirname, './dist'), //输出文件路径
     publicPath: '/dist/', //文件资源路径
@@ -83,14 +83,14 @@ module.exports = {
       {
         test: /\.sass/,
         use: ExtractTextPlugin.extract({
-          use: ['postcss-loader', 'sass-loader'],
+          use: ['postcss-loader', 'sass-loader', 'file-loader'],
           fallback: 'style-loader'
         })
       },
 
       {
-        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-        loader: 'url-loader?limit=8192'
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)$/,
+        use: ['url-loader?limit=8192']
       },
 
       {

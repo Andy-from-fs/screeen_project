@@ -1,17 +1,23 @@
 <!--
 Description
-@authors Your Name (you@example.org)
+@authors Andy
 @date    2017-09-05 16:27:25
 @version 1.0.0
 -->
 <template>
   <div>
-    Hello, World!
+    
   </div>
 </template>
 
 <script>
-  export default {}
+import item from './components/circleItem.vue';
+  export default {
+    name:'circle',
+    components:{
+      'item':item
+    }
+  }
 </script>
 
 <style lang="css">
