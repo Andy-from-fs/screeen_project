@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>circle</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+  <style>
+    body {
+      background-color: #282828;
+    }
+    
+    .fix {
+      width: 184px;
+      height: 122px;
+      background: url(./fix.png);
+      position: relative;
+    }
+    
+    .item {
+      width: 184px;
+      height: 184px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      margin: -92px 0 0 0;
+      transform: rotate(0);
+      transition: transform 40ms;
+    }
+    
+    .points {
+      background: url(./points.png);
+    }
+    
+    .square {
+      background: url(./square.png);
+    }
+    
+    .housing-washer {
+      background: url(./housing-washer.png);
+      left: -1px;
+    }
+    
+    .clear {
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fix container">
+    <div class="square item" id="square">
+    </div>
+    <div class="points item" id="points">
+    </div>
+    <div class="housing-washer item" id="housing_washer">
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+  <script src="./jquery-3.2.1.min.js"></script>
+  <script src="./jquery.rotate.min.js"></script>
+  <script>
+    var rotate = function(option) {
+      this.rotateInCircle = function(deg, unitTime, el, way) {
+        var angle = 0;
+        setInterval(function() {
+          // console.log(angle);
+          if (way) {
+            angle += deg;
+          } else {
+            angle -= deg;
+          }
+          $(el).rotate({
+            animateTo: angle,
+          });
+        }, unitTime);
+      }
+      option.forEach(function(item) {
+        this.rotateInCircle(item.deg, 50, item.el, item.way);
+      }, this);
+    };
+
+    var _option = [{
+      deg: 3,
+      el: $("#square"),
+      way: true
+    }, {
+      deg: 15,
+      el: $("#points"),
+      way: false
+    }, {
+      deg: 1,
+      el: $("#housing_washer"),
+      way: false
+    }];
+    var _rotate = new rotate(_option);
+  </script>
+</body>
+
+</html>
